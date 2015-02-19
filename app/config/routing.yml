@@ -1,3 +1,8 @@
+danilo_produto:
+    resource: "@DaniloProdutoBundle/Controller/"
+    type:     annotation
+    prefix:   /produtos/
+
 app:
     resource: @AppBundle/Controller/
     type:     annotation
