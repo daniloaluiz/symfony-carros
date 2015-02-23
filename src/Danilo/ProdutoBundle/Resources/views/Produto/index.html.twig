@@ -1,29 +1,37 @@
 {% extends "::base.html.twig"%}
 {% block body %}
-    <table>
-        <tr>
-            <td>Id</td>
-            <td>Nome</td>
-            <td>Descrição</td>
-            <td>Categorias</td>
-            <td>Ação</td>
-        </tr>
-        {% for produto in produtos %}
-            <tr>
-                <td>{{ produto.id }}</td>
-                <td>{{ produto.nome }}</td>
-                <td>{{ produto.descricao }}</td>
-                <td>
-                <ul>
-                {% for categoria in produto.categorias %}
-                    <li>{{categoria.id}} - {{categoria.nome}}</li>
-                 {% endfor %}   
-            </ul>
-                </td>
-                <td>
-                    Ações
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <div class="container">
+        <h1>Produtos</h1>
+        <a href="{{ url('produto_new') }}" class="btn btn-default">Novo produto</a>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Categorias</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                    <tr>
+                        <td>{{ produto.id }}</td>
+                        <td>{{ produto.nome }}</td>
+                        <td>{{ produto.descricao }}</td>
+                        <td>
+                            <ul>
+                                {% for categoria in produto.categorias %}
+                                    <li>{{categoria.id}} - {{categoria.nome}}</li>
+                                    {% endfor %}   
+                            </ul>
+                        </td>
+                        <td>
+                            Ações
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

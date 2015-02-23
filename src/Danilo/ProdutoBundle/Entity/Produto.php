@@ -31,11 +31,11 @@ class Produto {
      */
     private $descricao;
 
-    /**
-     * @ORM\OneToOne(targetEntity="ProdutoDetalhe")
-     * @ORM\JoinColumn(name="produto_detalhe_id", referencedColumnName="id")
-     */
-    private $detalhe;
+//    /**
+//     * @ORM\OneToOne(targetEntity="ProdutoDetalhe")
+//     * @ORM\JoinColumn(name="produto_detalhe_id", referencedColumnName="id")
+//     */
+//    private $detalhe;
 
     /**
      * @ORM\ManyToMany(targetEntity="Categoria",mappedBy="produtos")

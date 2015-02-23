@@ -38,18 +38,18 @@ class DefaultController extends Controller {
         $produto->addCategoria($categoria);
         $produto->addCategoria($categoria2);
 
-        $produtoDetalhe = new ProdutoDetalhe();
-        $produtoDetalhe->setPeso(11);
-        $produtoDetalhe->setAltura(21);
-        $produtoDetalhe->setLargura(3);
+//        $produtoDetalhe = new ProdutoDetalhe();
+//        $produtoDetalhe->setPeso(11);
+//        $produtoDetalhe->setAltura(21);
+//        $produtoDetalhe->setLargura(3);
 
-        $produto->setDetalhe($produtoDetalhe);
+    //    $produto->setDetalhe($produtoDetalhe);
 
         $em = $this->getDoctrine()->getManager();
 
         $em->persist($categoria);
         $em->persist($categoria2);
-        $em->persist($produtoDetalhe);
+ //       $em->persist($produtoDetalhe);
         $em->persist($produto);
         $em->flush();
         

@@ -1,0 +1,13 @@
+{% extends "::base.html.twig"%}
+{% block body %}
+    <div class="container">
+        <h1>Editando produto</h1>
+        <form method="post" action="">
+            {{ form_widget(form) }}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{{ url('produto')}}" class="btn btn-default">Lista</a>
+            </div>    
+        </form>
+    </div>
+{% endblock %}
