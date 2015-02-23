@@ -52,7 +52,8 @@ class DefaultController extends Controller {
         $em->persist($produtoDetalhe);
         $em->persist($produto);
         $em->flush();
-         $repo = $em->getRepository("DaniloProdutoBundle:Produto");
+        
+        $repo = $em->getRepository("DaniloProdutoBundle:Produto");
         //$repo = $em->getRepository("DaniloProdutoBundle:Categoria");
         // $produtos = $repo->getProdutosMaiorQue(1);
         //$categoria = $repo->find(1);

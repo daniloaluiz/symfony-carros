@@ -4,6 +4,7 @@ namespace Danilo\ProdutoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="categorias")
@@ -30,19 +31,20 @@ class Categoria {
      * @var string
      */
     private $descricao;
-    
+
     /**
      * @ORM\ManyToMany(targetEntity="Produto",inversedBy="categorias")
      * @ORM\JoinTable(name="categorias_produtos",
      *      joinColumns={@ORM\JoinColumn(name="categoria_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="produto_id", referencedColumnName="id")}
      *      )
-     **/       
+     * */
     private $produtos;
-    
+
     public function __construct() {
         $this->produtos = new ArrayCollection();
     }
+
     public function getProdutos() {
         return $this->produtos;
     }
@@ -51,7 +53,7 @@ class Categoria {
         $this->produtos[] = $produto;
     }
 
-        public function getId() {
+    public function getId() {
         return $this->id;
     }
 

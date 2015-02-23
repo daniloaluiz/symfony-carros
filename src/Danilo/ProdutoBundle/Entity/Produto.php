@@ -50,7 +50,9 @@ class Produto {
         return $this->categorias;
     }
 
-    public function addCategoria($categoria) {
+    public function addCategoria(Categoria $categoria)
+    {
+        $categoria->addProduto($this);
         $this->categorias[] = $categoria;
     }
 
