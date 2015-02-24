@@ -60,16 +60,15 @@ class ProdutoController extends Controller {
             'form' => $form->createView()
         ];
     }
-    
+
     /**
      * @Route("/{id}/edit/", name="produto_edit")
      * @Template()
      */
-    public function editAction($id)
-    {
-         $em = $this->getDoctrine()->getManager();
+    public function editAction($id) {
+        $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository("DaniloProdutoBundle:Produto")->find($id);
-        if(!$entity){
+        if (!$entity) {
             throw $this->createNotFoundException("Registro não encontrado");
         }
         $form = $this->createForm(new ProdutoType(), $entity);
@@ -77,6 +76,47 @@ class ProdutoController extends Controller {
             'entity' => $entity,
             'form' => $form->createView()
         ];
+    }
+
+    /**
+     * @Route("/{id}/update/", name="produto_update")
+     * @Template("DaniloProdutoBundle:Produto:edit.html.twig")
+     */
+    public function updateAction(Request $request, $id) {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository("DaniloProdutoBundle:Produto")->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException("Registro não encontrado");
+        }
+        $form = $this->createForm(new ProdutoType(), $entity);
+        $form->bind($request);
+        if ($form->isValid()) {
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('produto'));
+        }
+
+        return [
+            'entity' => $entity,
+            'form' => $form->createView()
+        ];
+    }
+    /**
+     * @Route("/{id}/delete/", name="produto_delete")
+     * @Template()
+     */
+    public function deleteAction($id) 
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository("DaniloProdutoBundle:Produto")->find($id);
+        if (!$entity) {
+            throw $this->createNotFoundException("Registro não encontrado");
+        }
+        $em->remove($entity);
+        $em->flush();
+        
+         return $this->redirect($this->generateUrl('produto'));
     }
 
 }

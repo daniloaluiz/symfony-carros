@@ -12,6 +12,7 @@ class ProdutoType extends AbstractType
         $builder
                 ->add('nome','text',['label'=>'Produto','required'=>true])
                 ->add('descricao','textarea')
+                ->add('categorias')
                 ;
     }
     public function setDefaultOptions(OptionsResolverInterface $resolver) {

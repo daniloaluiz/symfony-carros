@@ -27,7 +27,9 @@
                             </ul>
                         </td>
                         <td>
-                            Ações
+                            <a href="{{path('produto_edit',{'id':produto.id})}}">Editar</a>
+                            &nbsp;|&nbsp;
+                            <a href="{{path('produto_delete',{'id':produto.id})}}">Deletar</a>
                         </td>
                     </tr>
                 {% endfor %}

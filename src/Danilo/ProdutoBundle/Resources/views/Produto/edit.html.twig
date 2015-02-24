@@ -2,7 +2,7 @@
 {% block body %}
     <div class="container">
         <h1>Editando produto</h1>
-        <form method="post" action="">
+        <form method="post" action="{{path('produto_update',{'id':entity.id})}}">
             {{ form_widget(form) }}
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Salvar</button>

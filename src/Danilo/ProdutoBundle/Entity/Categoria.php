@@ -33,11 +33,7 @@ class Categoria {
     private $descricao;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Produto",inversedBy="categorias")
-     * @ORM\JoinTable(name="categorias_produtos",
-     *      joinColumns={@ORM\JoinColumn(name="categoria_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="produto_id", referencedColumnName="id")}
-     *      )
+     * @ORM\ManyToMany(targetEntity="Produto",mappedBy="categorias")
      * */
     private $produtos;
 
@@ -75,6 +71,10 @@ class Categoria {
 
     public function setDescricao($descricao) {
         $this->descricao = $descricao;
+    }
+    
+    public function __toString() {
+        return $this->getNome();
     }
 
 }
