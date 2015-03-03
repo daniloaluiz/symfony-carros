@@ -1,0 +1,5 @@
+services:
+    danilo_produto.service.produto:
+        class: Danilo\ProdutoBundle\Service\ProdutoService
+        arguments: 
+            - "@doctrine.orm.entity_manager"

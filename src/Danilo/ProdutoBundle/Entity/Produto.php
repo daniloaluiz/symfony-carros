@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Danilo\ProdutoBundle\Entity\ProdutoRepository") 
  */
-class Produto {
+class Produto implements ProdutoInterface{
 
     /**
      * @ORM\Id

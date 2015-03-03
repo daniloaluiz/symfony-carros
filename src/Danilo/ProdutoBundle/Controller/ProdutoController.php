@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use Danilo\ProdutoBundle\Entity\Produto;
 use Danilo\ProdutoBundle\Form\ProdutoType;
-
+use Danilo\ProdutoBundle\Service\ProdutoService;
 /**
  * @Route("/produto")
  */
@@ -45,12 +45,11 @@ class ProdutoController extends Controller {
     public function createAction(Request $request) {
         $entity = new Produto();
         $form = $this->createForm(new ProdutoType(), $entity);
-        $form->bind($request);
+        $form->submit($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
+            $produtoService = $this->get('danilo_produto.service.produto');
+            $entity = $produtoService->insert($entity);
 
             return $this->redirect($this->generateUrl('produto'));
         }
