@@ -12,11 +12,11 @@ use Danilo\ProdutoBundle\Entity\Categoria;
 class DefaultController extends Controller {
 
     /**
-     * @Route("/")
+     * @Route("/produtosx/")
      * @Template()
      */
-    public function indexAction($name) {
-        return ['name' => $name];
+    public function indexAction() {
+        return [];
     }
 
     /**
