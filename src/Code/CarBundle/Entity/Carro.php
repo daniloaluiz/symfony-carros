@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Carro
  *
- * @ORM\Table()
+ * @ORM\Table("carro")
  * @ORM\Entity
  */
 class Carro
@@ -29,11 +29,10 @@ class Carro
     private $modelo;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="fabricante", type="string", length=255)
-     */
-    private $fabricante;
+    * @ORM\ManyToOne(targetEntity="Code\CarBundle\Entity\Fabricante", inversedBy="carros")
+    * @ORM\JoinColumn(name="fabricante_id", referencedColumnName="id", onDelete="SET NULL")
+    **/
+    protected $fabricante;
 
     /**
      * @var integer
@@ -151,4 +150,5 @@ class Carro
     {
         return $this->cor;
     }
+    
 }

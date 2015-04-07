@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Fabricante
  *
- * @ORM\Table()
+ * @ORM\Table("fabricante")
  * @ORM\Entity
  */
 class Fabricante
@@ -28,6 +28,10 @@ class Fabricante
      */
     private $nome;
 
+    /**
+    * @ORM\OneToMany(targetEntity="Code\CarBundle\Entity\Carro", mappedBy="fabricante", orphanRemoval=true)
+    **/
+    protected $carros;
 
     /**
      * Get id
@@ -61,4 +65,14 @@ class Fabricante
     {
         return $this->nome;
     }
+    
+    public function getCarros() {
+        return $this->carros;
+    }
+
+    public function setCarros($carros) {
+        $this->carros = $carros;
+    }
+
+
 }
