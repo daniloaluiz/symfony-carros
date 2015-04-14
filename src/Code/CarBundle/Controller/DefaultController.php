@@ -33,7 +33,7 @@ class DefaultController extends Controller {
          $carros = $repo->findAll();
         return array('carros' => $carros);
     }
-
+    
     /**
      * @Route("/popula")
      * @Template()

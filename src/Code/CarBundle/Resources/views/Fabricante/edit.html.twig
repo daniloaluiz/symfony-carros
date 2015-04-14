@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Edição de fabricante{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Editando fabricante</h1>
+        <form method="post" action="{{path('fabricante_update',{'id':entity.id})}}">
+            {{ form_widget(form) }}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{{ url('produto')}}" class="btn btn-default">Lista</a>
+            </div>    
+        </form>
+    </div>
+{% endblock %}

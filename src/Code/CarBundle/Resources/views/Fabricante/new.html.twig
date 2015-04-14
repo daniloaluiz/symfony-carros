@@ -1,0 +1,16 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Cadastro de Fabricante{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Novo fabricante</h1>
+        <form method="post" action="{{path('fabricante_create')}}">
+            {{ form_widget(form) }}
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Salvar</button>
+                <a href="{{ url('fabricante_index')}}" class="btn btn-default">Lista  de fabricantes</a>
+            </div>    
+        </form>
+    </div>
+{% endblock %}

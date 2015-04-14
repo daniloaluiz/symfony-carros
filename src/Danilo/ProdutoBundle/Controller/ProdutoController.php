@@ -31,7 +31,7 @@ class ProdutoController extends Controller {
      * @Template()
      */
     public function newAction() {
-        $this->checkAutotizado();
+       // $this->checkAutotizado();
         
         $entity = new Produto();
         $form = $this->createForm(new ProdutoType(), $entity);
@@ -46,7 +46,7 @@ class ProdutoController extends Controller {
      * @Template("DaniloProdutoBundle:Produto:new.html.twig")
      */
     public function createAction(Request $request) {
-        $this->checkAutotizado();
+    //    $this->checkAutotizado();
         $entity = new Produto();
         $form = $this->createForm(new ProdutoType(), $entity);
         $form->submit($request);
@@ -69,7 +69,7 @@ class ProdutoController extends Controller {
      * @Template()
      */
     public function editAction($id) {
-         $this->checkAutotizado();
+   //      $this->checkAutotizado();
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository("DaniloProdutoBundle:Produto")->find($id);
         if (!$entity) {
@@ -87,7 +87,7 @@ class ProdutoController extends Controller {
      * @Template("DaniloProdutoBundle:Produto:edit.html.twig")
      */
     public function updateAction(Request $request, $id) {
-         $this->checkAutotizado();
+     //    $this->checkAutotizado();
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository("DaniloProdutoBundle:Produto")->find($id);
         if (!$entity) {
@@ -113,7 +113,7 @@ class ProdutoController extends Controller {
      */
     public function deleteAction($id) 
     {
-         $this->checkAutotizado();
+    //     $this->checkAutotizado();
         $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository("DaniloProdutoBundle:Produto")->find($id);
         if (!$entity) {
