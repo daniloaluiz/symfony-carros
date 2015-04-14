@@ -61,14 +61,29 @@ class FabricanteController extends Controller
         
     }
     /**
-     * @Route("/fabricantes/{id}edit",name="fabricante_update")
-     * @Template()
+     * @Route("/fabricantes/{id}/update",name="fabricante_update")
+     * @Template("CodeCarBundle:Fabricante:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
-        return array(
-                // ...
-            );    
+         $em = $this->getDoctrine()->getManager();
+        $fabricante = $em->getRepository("CodeCarBundle:Fabricante")->find($id);
+        if (!$fabricante) {
+            throw $this->createNotFoundException("Registro não encontrado");
+        }
+        $form = $this->createForm(new FabricanteType(), $fabricante);
+        $form->bind($request);
+        if ($form->isValid()) {
+            $em->persist($fabricante);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('fabricante_index'));
+        }
+
+        return [
+            'entity' => $fabricante,
+            'form' => $form->createView()
+        ];  
         
     }
      /**
@@ -77,9 +92,16 @@ class FabricanteController extends Controller
      */
     public function editAction($id)
     {
-        return array(
-                // ...
-            );    
+        $em = $this->getDoctrine()->getManager();
+        $fabricante = $em->getRepository("CodeCarBundle:Fabricante")->find($id);
+        if (!$fabricante) {
+            throw $this->createNotFoundException("Registro não encontrado");
+        }
+        $form = $this->createForm(new FabricanteType(), $fabricante);
+        return [
+            'fabricante' => $fabricante,
+            'form' => $form->createView()
+        ];  
         
     }
      /**
