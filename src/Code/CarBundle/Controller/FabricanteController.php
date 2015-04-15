@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Finder\Exception\AccessDeniedException;
 use Code\CarBundle\Form\FabricanteType;
 use Code\CarBundle\Entity\Fabricante;
 
@@ -29,6 +30,7 @@ class FabricanteController extends Controller
      */
     public function newAction()
     {
+        $this->checkAutotizado();
        $fabricante = new Fabricante();
         $form = $this->createForm(new FabricanteType(), $fabricante);
         return [
@@ -117,5 +119,12 @@ class FabricanteController extends Controller
         $fabricante = $fabricanteService->delete($fabricante);
         
          return $this->redirect($this->generateUrl('fabricante_index'));  
+    }
+    
+    private function checkAutotizado(){
+        $securityContext = $this->get('security.context');
+        if(!$securityContext->isGranted('ROLE_ADMIN')){
+            throw new AccessDeniedException('Somente Admin pode acessar aqui');
+        }
     }
 }
