@@ -74,9 +74,7 @@ class FabricanteController extends Controller
         $form = $this->createForm(new FabricanteType(), $fabricante);
         $form->bind($request);
         if ($form->isValid()) {
-            $em->persist($fabricante);
             $em->flush();
-
             return $this->redirect($this->generateUrl('fabricante_index'));
         }
 
@@ -105,14 +103,19 @@ class FabricanteController extends Controller
         
     }
      /**
-     * @Route("/fabricantes/edit",name="fabricante_delete")
+     * @Route("/fabricantes/{id}/delete",name="fabricante_delete")
      * @Template()
      */
-    public function deleteAction()
+    public function deleteAction($id)
     {
-        return array(
-                // ...
-            );    
+        $em = $this->getDoctrine()->getManager();
+        $fabricante = $em->getRepository("CodeCarBundle:Fabricante")->find($id);
+        if (!$fabricante) {
+            throw $this->createNotFoundException("Registro não encontrado");
+        }
+        $em->remove($fabricante);
+        $em->flush();
         
+         return $this->redirect($this->generateUrl('fabricante_index'));  
     }
 }
