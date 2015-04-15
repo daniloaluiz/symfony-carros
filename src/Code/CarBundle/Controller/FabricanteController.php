@@ -113,8 +113,8 @@ class FabricanteController extends Controller
         if (!$fabricante) {
             throw $this->createNotFoundException("Registro não encontrado");
         }
-        $em->remove($fabricante);
-        $em->flush();
+        $fabricanteService = $this->get('code_car.service.fabricante');
+        $fabricante = $fabricanteService->delete($fabricante);
         
          return $this->redirect($this->generateUrl('fabricante_index'));  
     }

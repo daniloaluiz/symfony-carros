@@ -20,5 +20,13 @@ class FabricanteService {
         
         return $entity;
     }
-
+    
+    public function delete(FabricanteInterface $entity) {
+        $em = $this->em;
+        $em->remove($entity);
+        $em->flush();
+        
+        return $entity;
+    }
+    
 }
